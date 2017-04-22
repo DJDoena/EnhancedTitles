@@ -250,3 +250,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/EnhancedTitles/EnhancedTitlesSetup/Setup/EnhancedTitles/EnhancedTitlesSetup.exe
