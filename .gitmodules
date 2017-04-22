@@ -1,0 +1,9 @@
+[submodule "PluginInterface"]
+	path = PluginInterface
+	url = https://github.com/DJDoena/PluginInterface.git
+[submodule "DVDProfilerHelper"]
+	path = DVDProfilerHelper
+	url = https://github.com/DJDoena/DVDProfilerHelper.git
+[submodule "EnhancedTitlesLibrary"]
+	path = EnhancedTitlesLibrary
+	url = https://github.com/DJDoena/EnhancedTitlesLibrary.git

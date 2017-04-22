@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Libraries", "_Libraries", "{9E0351DE-5BED-40C2-AC6B-8A60F04DBDCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{2D659D66-1AB9-4827-B461-40A835AF06AB}"
+	ProjectSection(SolutionItems) = preProject
+		EnhancedTitles\EnhancedTitlesSetup\Setup.iss = EnhancedTitles\EnhancedTitlesSetup\Setup.iss
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVDProfilerHelper", "DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj", "{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedTitlesLibrary", "EnhancedTitlesLibrary\EnhancedTitlesLibrary\EnhancedTitlesLibrary.csproj", "{B77FCD17-EF8C-4849-9FFE-7EA0A9FE11C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedTitles", "EnhancedTitles\EnhancedTitles\EnhancedTitles.csproj", "{4A97D52B-42B1-419A-B72D-D723219AB819}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}.Debug|x86.ActiveCfg = Debug|x86
+		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}.Debug|x86.Build.0 = Debug|x86
+		{B77FCD17-EF8C-4849-9FFE-7EA0A9FE11C5}.Debug|x86.ActiveCfg = Debug|x86
+		{B77FCD17-EF8C-4849-9FFE-7EA0A9FE11C5}.Debug|x86.Build.0 = Debug|x86
+		{4A97D52B-42B1-419A-B72D-D723219AB819}.Debug|x86.ActiveCfg = Debug|x86
+		{4A97D52B-42B1-419A-B72D-D723219AB819}.Debug|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36} = {9E0351DE-5BED-40C2-AC6B-8A60F04DBDCA}
+		{B77FCD17-EF8C-4849-9FFE-7EA0A9FE11C5} = {9E0351DE-5BED-40C2-AC6B-8A60F04DBDCA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="CustomPluginDataDefinitions" type="CustomPluginDataDefinitions" />
+  <xs:complexType name="CustomPluginDataDefinitions">
+    <xs:sequence>
+      <xs:element name="FieldDomain" type="FieldDomain" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FieldDomain">
+    <xs:sequence>
+      <xs:element name="Field" type="FieldData" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="FieldData">
+    <xs:attribute name="FieldName" type="xs:string" use="required" />
+    <xs:attribute name="FieldType" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:int">
+          <xs:enumeration value="1">
+            <xs:annotation>
+              <xs:documentation>FIELD_TYPE_INT</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="2">
+            <xs:annotation>
+              <xs:documentation>FIELD_TYPE_STRING</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="3">
+            <xs:annotation>
+              <xs:documentation>FIELD_TYPE_DATETIME</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="4">
+            <xs:annotation>
+              <xs:documentation>FIELD_TYPE_CURRENCY</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="5">
+            <xs:annotation>
+              <xs:documentation>FIELD_TYPE_BYTE_ARRAY</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ReadKeyRequired" type="xs:boolean" use="required" />
+    <xs:attribute name="WriteKeyRequired" type="xs:boolean" use="required" />
+    <xs:attribute name="StoreInBackup" type="xs:boolean" use="required" />
+    <xs:attribute name="StoreInDPO" type="xs:boolean" use="required" />
+  </xs:complexType>
+</xs:schema>
