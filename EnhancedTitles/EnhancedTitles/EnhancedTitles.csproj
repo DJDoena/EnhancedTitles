@@ -45,14 +45,6 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -120,7 +112,6 @@
     <EmbeddedResource Include="Resources\Texts.de.resx">
       <DependentUpon>Texts.resx</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DJDSOFT.ICO">
@@ -164,6 +155,14 @@
     <ProjectReference Include="..\..\EnhancedTitlesLibrary\EnhancedTitlesLibrary\EnhancedTitlesLibrary.csproj">
       <Project>{b77fcd17-ef8c-4849-9ffe-7ea0a9fe11c5}</Project>
       <Name>EnhancedTitlesLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Microsoft.WindowsAPICodePack\Core\Core.csproj">
+      <Project>{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Microsoft.WindowsAPICodePack\Shell\Shell.csproj">
+      <Project>{aa0c00cb-8699-4f37-bfae-40ca87acc06d}</Project>
+      <Name>Shell</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
