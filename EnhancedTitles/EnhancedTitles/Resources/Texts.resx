@@ -243,7 +243,13 @@
   <data name="ExportToExcel" xml:space="preserve">
     <value>Export to Excel</value>
   </data>
-  <data name="EnableFilter" xml:space="preserve">
-    <value>Enable {0} Filter</value>
+  <data name="AnyTitle" xml:space="preserve">
+    <value>Any title</value>
+  </data>
+  <data name="ApplyStandardFilter" xml:space="preserve">
+    <value>Apply Filter to Profiler Title Fields</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
   </data>
 </root>

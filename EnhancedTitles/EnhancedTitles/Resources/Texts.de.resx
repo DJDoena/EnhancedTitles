@@ -129,6 +129,12 @@
   <data name="AlternateOriginalTitle" xml:space="preserve">
     <value>Alternativer Originaltitel</value>
   </data>
+  <data name="AnyTitle" xml:space="preserve">
+    <value>Beliebiger Titel</value>
+  </data>
+  <data name="ApplyStandardFilter" xml:space="preserve">
+    <value>Filter auf Profiler-Titel-Felder anwenden</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
@@ -230,5 +236,8 @@
   </data>
   <data name="UiLanguage" xml:space="preserve">
     <value>Oberflächensprache</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Jahr</value>
   </data>
 </root>

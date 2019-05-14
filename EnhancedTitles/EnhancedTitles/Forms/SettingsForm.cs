@@ -59,11 +59,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             AdditionalTitle1CheckBox.Checked = dv.AdditionalTitle1;
             AdditionalTitle2CheckBox.Checked = dv.AdditionalTitle2;
 
-            InternationalEnglishTitleFilterCheckBox.Checked = dv.InternationalEnglishTitleFilter;
-            AlternateOriginalTitleFilterCheckBox.Checked = dv.AlternateOriginalTitleFilter;
-            NonLatinLettersTitleFilterCheckBox.Checked = dv.NonLatinLettersTitleFilter;
-            AdditionalTitle1FilterCheckBox.Checked = dv.AdditionalTitle1Filter;
-            AdditionalTitle2FilterCheckBox.Checked = dv.AdditionalTitle2Filter;
+            StandardFilterCheckBox.Checked = dv.StandardFilter;
 
             ExportToCollectionXmlCheckBox.Checked = dv.ExportToCollectionXml;
         }
@@ -122,15 +118,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
             ExportToCollectionXmlLabel.Text = Texts.ExportToCollectionXml;
 
-            InternationalEnglishTitleFilterLabel.Text = String.Format(Texts.EnableFilter, dv.InternationalEnglishTitleLabel);
-
-            AlternateOriginalTitleFilterLabel.Text = String.Format(Texts.EnableFilter, dv.AlternateOriginalTitleLabel);
-
-            NonLatinLettersTitleFilterLabel.Text = String.Format(Texts.EnableFilter, dv.NonLatinLettersTitleLabel);
-
-            AdditionalTitle1FilterLabel.Text = String.Format(Texts.EnableFilter, dv.AdditionalTitle1Label);
-
-            AdditionalTitle2FilterLabel.Text = String.Format(Texts.EnableFilter, dv.AdditionalTitle2Label);
+            StandardFilterLabel.Text = Texts.ApplyStandardFilter;
 
             #endregion
 
@@ -179,11 +167,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             dv.AdditionalTitle1 = AdditionalTitle1CheckBox.Checked;
             dv.AdditionalTitle2 = AdditionalTitle2CheckBox.Checked;
 
-            dv.InternationalEnglishTitleFilter = InternationalEnglishTitleFilterCheckBox.Checked;
-            dv.AlternateOriginalTitleFilter = AlternateOriginalTitleFilterCheckBox.Checked;
-            dv.NonLatinLettersTitleFilter = NonLatinLettersTitleFilterCheckBox.Checked;
-            dv.AdditionalTitle1Filter = AdditionalTitle1FilterCheckBox.Checked;
-            dv.AdditionalTitle2Filter = AdditionalTitle2FilterCheckBox.Checked;
+            dv.StandardFilter = StandardFilterCheckBox.Checked;
 
             dv.ExportToCollectionXml = ExportToCollectionXmlCheckBox.Checked;
 

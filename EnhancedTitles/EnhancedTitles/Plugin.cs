@@ -535,43 +535,63 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             return (null);
         }
 
-        public Boolean FilterFieldMatch(String FieldFilterToken
-            , Int32 ComparisonTypeIndex
-            , Object ComparisonValue
+        public bool FilterFieldMatch(string FieldFilterToken
+            , int ComparisonTypeIndex
+            , object ComparisonValue
             , IDVDInfo TestDVD)
         {
-            String fieldName;
+            var comparisonText = ((ComparisonValue as string ?? ComparisonValue?.ToString()) ?? string.Empty).Trim();
 
-            if (ComparisonValue == null)
+            if (string.IsNullOrEmpty(comparisonText))
             {
-                return (false);
+                return true;
             }
 
-            if (FilterTokens.TryGetValue(FieldFilterToken, out fieldName))
+            if (FilterTokens.TryGetValue(FieldFilterToken, out _))
             {
-                String text;
+                var fields = new[] { Constants.InternationalEnglishTitle
+                    , Constants.AlternateOriginalTitle
+                    , Constants.NonLatinLettersTitle
+                    , Constants.AdditionalTitle1
+                    , Constants.AdditionalTitle2 };
 
-                if ((new TitleManager(TestDVD)).GetText(fieldName, out text))
+                int index = 0;
+                bool contains;
+                do
                 {
-                    String compare;
-                    Boolean contains;
+                    contains = ContainsFilter(ComparisonTypeIndex, comparisonText, TestDVD, fields[index++]);
+                } while (!contains && index < fields.Length);
 
-                    compare = ComparisonValue.ToString();
-
-                    if (ComparisonTypeIndex == 0)
-                    {
-                        contains = (text.IndexOf(compare, StringComparison.OrdinalIgnoreCase) == 0);
-                    }
-                    else
-                    {
-                        contains = (text.IndexOf(compare, StringComparison.OrdinalIgnoreCase) >= 0);
-                    }
-
-                    return (contains);
+                if (contains)
+                {
+                    return contains;
                 }
+
+                if (Settings.DefaultValues.StandardFilter)
+                {
+                    Api.DVDByProfileID(out var profile, TestDVD.GetProfileID(), 0, 0);
+
+                    contains = ContainsFilter(ComparisonTypeIndex, comparisonText, profile.GetTitle());
+
+                    if (contains)
+                    {
+                        return contains;
+                    }
+
+                    contains = ContainsFilter(ComparisonTypeIndex, comparisonText, profile.GetOriginalTitle());
+
+                    if (contains)
+                    {
+                        return contains;
+                    }
+
+                    contains = ContainsFilter(ComparisonTypeIndex, comparisonText, profile.GetSortTitle());
+                }
+
+                return contains;
             }
 
-            return (false);
+            return false;
         }
 
         #endregion
@@ -606,11 +626,19 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
                 dv = Settings.DefaultValues;
 
-                RegisterCustomField(Constants.InternationalEnglishTitle, dv.InternationalEnglishTitleLabel, rebuildFilters, dv.InternationalEnglishTitleFilter);
-                RegisterCustomField(Constants.AlternateOriginalTitle, dv.AlternateOriginalTitleLabel, rebuildFilters, dv.AlternateOriginalTitleFilter);
-                RegisterCustomField(Constants.NonLatinLettersTitle, dv.NonLatinLettersTitleLabel, rebuildFilters, dv.NonLatinLettersTitleFilter);
-                RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters, dv.AdditionalTitle1Filter);
-                RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters, dv.AdditionalTitle2Filter);
+                //RegisterCustomField(Constants.InternationalEnglishTitle, dv.InternationalEnglishTitleLabel, rebuildFilters, dv.InternationalEnglishTitleFilter);
+                //RegisterCustomField(Constants.AlternateOriginalTitle, dv.AlternateOriginalTitleLabel, rebuildFilters, dv.AlternateOriginalTitleFilter);
+                //RegisterCustomField(Constants.NonLatinLettersTitle, dv.NonLatinLettersTitleLabel, rebuildFilters, dv.NonLatinLettersTitleFilter);
+                //RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters, dv.AdditionalTitle1Filter);
+                //RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters, dv.AdditionalTitle2Filter);
+
+                RegisterCustomField(Constants.InternationalEnglishTitle, dv.InternationalEnglishTitleLabel, rebuildFilters);
+                RegisterCustomField(Constants.AlternateOriginalTitle, dv.AlternateOriginalTitleLabel, rebuildFilters);
+                RegisterCustomField(Constants.NonLatinLettersTitle, dv.NonLatinLettersTitleLabel, rebuildFilters);
+                RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters);
+                RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters);
+
+                RegisterCustomFilterField(Constants.SearchField, Texts.ET, rebuildFilters, true);
             }
             catch (Exception ex)
             {
@@ -654,12 +682,11 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
         private void RegisterCustomField(String fieldName
             , String displayName
-            , Boolean rebuildFilters
-            , Boolean filterIsEnabled)
+            , Boolean rebuildFilters)
+        //, Boolean filterIsEnabled)
         {
             Api.CreateCustomDVDField(Constants.FieldDomain, fieldName, PluginConstants.FIELD_TYPE_STRING, Constants.ReadKey, InternalConstants.WriteKey);
             Api.SetCustomDVDFieldStorage(Constants.FieldDomain, fieldName, InternalConstants.WriteKey, true, false);
-            RegisterCustomFilterField(fieldName, displayName, rebuildFilters, filterIsEnabled);
         }
 
         private void RegisterCustomFilterField(String fieldName
@@ -992,9 +1019,8 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
         private void OpenEditor(Boolean fullEdit)
         {
             IDVDInfo profile;
-            String profileId;
+            String profileId = CurrentProfileId;
 
-            profileId = CurrentProfileId;
             if (String.IsNullOrEmpty(profileId))
             {
                 profile = Api.GetDisplayedDVD();
@@ -1028,9 +1054,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
         {
             Exception returnEx = ex;
 
-            COMException comEx = ex as COMException;
-
-            if (comEx != null)
+            if (ex is COMException comEx)
             {
                 String lastApiError = Api.GetLastError();
 
@@ -1040,6 +1064,32 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             }
 
             return (returnEx);
+        }
+
+        private static bool ContainsFilter(int comparisonTypeIndex
+            , string comparisonText
+            , IDVDInfo testDVD
+            , string fieldName)
+        {
+            if ((new TitleManager(testDVD)).GetText(fieldName, out var text))
+            {
+                var contains = ContainsFilter(comparisonTypeIndex, comparisonText, text);
+
+                return contains;
+            }
+
+            return false;
+        }
+
+        private static bool ContainsFilter(int comparisonTypeIndex, string comparisonText, string text)
+        {
+            text = text ?? string.Empty;
+
+            var contains = (comparisonTypeIndex == 0)
+                ? (text.IndexOf(comparisonText, StringComparison.OrdinalIgnoreCase) == 0)
+                : (text.IndexOf(comparisonText, StringComparison.OrdinalIgnoreCase) >= 0);
+
+            return contains;
         }
 
         #region Plugin Registering

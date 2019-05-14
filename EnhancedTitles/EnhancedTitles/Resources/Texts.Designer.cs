@@ -19,7 +19,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Texts {
@@ -97,6 +97,24 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Any title.
+        /// </summary>
+        internal static string AnyTitle {
+            get {
+                return ResourceManager.GetString("AnyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Filter to Profiler Title Fields.
+        /// </summary>
+        internal static string ApplyStandardFilter {
+            get {
+                return ResourceManager.GetString("ApplyStandardFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -138,15 +156,6 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles.Resources {
         internal static string Edition {
             get {
                 return ResourceManager.GetString("Edition", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable {0} Filter.
-        /// </summary>
-        internal static string EnableFilter {
-            get {
-                return ResourceManager.GetString("EnableFilter", resourceCulture);
             }
         }
         
@@ -444,6 +453,15 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles.Resources {
         internal static string UiLanguage {
             get {
                 return ResourceManager.GetString("UiLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

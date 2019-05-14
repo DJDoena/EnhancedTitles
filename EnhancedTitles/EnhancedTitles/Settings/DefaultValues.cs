@@ -44,15 +44,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
         #region Filters
 
-        public Boolean InternationalEnglishTitleFilter = false;
-
-        public Boolean AlternateOriginalTitleFilter = false;
-
-        public Boolean NonLatinLettersTitleFilter = false;
-
-        public Boolean AdditionalTitle1Filter = false;
-
-        public Boolean AdditionalTitle2Filter = false;
+        public Boolean StandardFilter = false;
 
         #endregion
 

@@ -55,16 +55,8 @@
             this.AlternateOriginalTitleCheckBox = new System.Windows.Forms.CheckBox();
             this.InternationalEnglishTitleCheckBox = new System.Windows.Forms.CheckBox();
             this.MiscTabPage = new System.Windows.Forms.TabPage();
-            this.AdditionalTitle2FilterLabel = new System.Windows.Forms.Label();
-            this.AdditionalTitle1FilterLabel = new System.Windows.Forms.Label();
-            this.NonLatinLettersTitleFilterLabel = new System.Windows.Forms.Label();
-            this.AlternateOriginalTitleFilterLabel = new System.Windows.Forms.Label();
-            this.InternationalEnglishTitleFilterLabel = new System.Windows.Forms.Label();
-            this.AdditionalTitle2FilterCheckBox = new System.Windows.Forms.CheckBox();
-            this.AdditionalTitle1FilterCheckBox = new System.Windows.Forms.CheckBox();
-            this.NonLatinLettersTitleFilterCheckBox = new System.Windows.Forms.CheckBox();
-            this.AlternateOriginalTitleFilterCheckBox = new System.Windows.Forms.CheckBox();
-            this.InternationalEnglishTitleFilterCheckBox = new System.Windows.Forms.CheckBox();
+            this.StandardFilterLabel = new System.Windows.Forms.Label();
+            this.StandardFilterCheckBox = new System.Windows.Forms.CheckBox();
             this.ExportToCollectionXmlLabel = new System.Windows.Forms.Label();
             this.ExportToCollectionXmlCheckBox = new System.Windows.Forms.CheckBox();
             this.UiLanguageComboBox = new System.Windows.Forms.ComboBox();
@@ -334,16 +326,8 @@
             // 
             // MiscTabPage
             // 
-            this.MiscTabPage.Controls.Add(this.AdditionalTitle2FilterLabel);
-            this.MiscTabPage.Controls.Add(this.AdditionalTitle1FilterLabel);
-            this.MiscTabPage.Controls.Add(this.NonLatinLettersTitleFilterLabel);
-            this.MiscTabPage.Controls.Add(this.AlternateOriginalTitleFilterLabel);
-            this.MiscTabPage.Controls.Add(this.InternationalEnglishTitleFilterLabel);
-            this.MiscTabPage.Controls.Add(this.AdditionalTitle2FilterCheckBox);
-            this.MiscTabPage.Controls.Add(this.AdditionalTitle1FilterCheckBox);
-            this.MiscTabPage.Controls.Add(this.NonLatinLettersTitleFilterCheckBox);
-            this.MiscTabPage.Controls.Add(this.AlternateOriginalTitleFilterCheckBox);
-            this.MiscTabPage.Controls.Add(this.InternationalEnglishTitleFilterCheckBox);
+            this.MiscTabPage.Controls.Add(this.StandardFilterLabel);
+            this.MiscTabPage.Controls.Add(this.StandardFilterCheckBox);
             this.MiscTabPage.Controls.Add(this.ExportToCollectionXmlLabel);
             this.MiscTabPage.Controls.Add(this.ExportToCollectionXmlCheckBox);
             this.MiscTabPage.Controls.Add(this.UiLanguageComboBox);
@@ -356,95 +340,23 @@
             this.MiscTabPage.Text = "Misc.";
             this.MiscTabPage.UseVisualStyleBackColor = true;
             // 
-            // AdditionalTitle2FilterLabel
+            // StandardFilterLabel
             // 
-            this.AdditionalTitle2FilterLabel.AutoSize = true;
-            this.AdditionalTitle2FilterLabel.Location = new System.Drawing.Point(6, 148);
-            this.AdditionalTitle2FilterLabel.Name = "AdditionalTitle2FilterLabel";
-            this.AdditionalTitle2FilterLabel.Size = new System.Drawing.Size(163, 13);
-            this.AdditionalTitle2FilterLabel.TabIndex = 12;
-            this.AdditionalTitle2FilterLabel.Text = "Enable \"Additional Title #2\" Filter";
+            this.StandardFilterLabel.AutoSize = true;
+            this.StandardFilterLabel.Location = new System.Drawing.Point(6, 56);
+            this.StandardFilterLabel.Name = "StandardFilterLabel";
+            this.StandardFilterLabel.Size = new System.Drawing.Size(144, 13);
+            this.StandardFilterLabel.TabIndex = 4;
+            this.StandardFilterLabel.Text = "Apply Filter to Standard Titles";
             // 
-            // AdditionalTitle1FilterLabel
+            // StandardFilterCheckBox
             // 
-            this.AdditionalTitle1FilterLabel.AutoSize = true;
-            this.AdditionalTitle1FilterLabel.Location = new System.Drawing.Point(6, 125);
-            this.AdditionalTitle1FilterLabel.Name = "AdditionalTitle1FilterLabel";
-            this.AdditionalTitle1FilterLabel.Size = new System.Drawing.Size(163, 13);
-            this.AdditionalTitle1FilterLabel.TabIndex = 10;
-            this.AdditionalTitle1FilterLabel.Text = "Enable \"Additional Title #1\" Filter";
-            // 
-            // NonLatinLettersTitleFilterLabel
-            // 
-            this.NonLatinLettersTitleFilterLabel.AutoSize = true;
-            this.NonLatinLettersTitleFilterLabel.Location = new System.Drawing.Point(6, 102);
-            this.NonLatinLettersTitleFilterLabel.Name = "NonLatinLettersTitleFilterLabel";
-            this.NonLatinLettersTitleFilterLabel.Size = new System.Drawing.Size(182, 13);
-            this.NonLatinLettersTitleFilterLabel.TabIndex = 8;
-            this.NonLatinLettersTitleFilterLabel.Text = "Enable \"Non-Latin Letters Title\" Filter";
-            // 
-            // AlternateOriginalTitleFilterLabel
-            // 
-            this.AlternateOriginalTitleFilterLabel.AutoSize = true;
-            this.AlternateOriginalTitleFilterLabel.Location = new System.Drawing.Point(6, 79);
-            this.AlternateOriginalTitleFilterLabel.Name = "AlternateOriginalTitleFilterLabel";
-            this.AlternateOriginalTitleFilterLabel.Size = new System.Drawing.Size(181, 13);
-            this.AlternateOriginalTitleFilterLabel.TabIndex = 6;
-            this.AlternateOriginalTitleFilterLabel.Text = "Enable \"Alternate Original Title\" Filter";
-            // 
-            // InternationalEnglishTitleFilterLabel
-            // 
-            this.InternationalEnglishTitleFilterLabel.AutoSize = true;
-            this.InternationalEnglishTitleFilterLabel.Location = new System.Drawing.Point(6, 56);
-            this.InternationalEnglishTitleFilterLabel.Name = "InternationalEnglishTitleFilterLabel";
-            this.InternationalEnglishTitleFilterLabel.Size = new System.Drawing.Size(196, 13);
-            this.InternationalEnglishTitleFilterLabel.TabIndex = 4;
-            this.InternationalEnglishTitleFilterLabel.Text = "Enable \"International English Title\" Filter";
-            // 
-            // AdditionalTitle2FilterCheckBox
-            // 
-            this.AdditionalTitle2FilterCheckBox.AutoSize = true;
-            this.AdditionalTitle2FilterCheckBox.Location = new System.Drawing.Point(230, 148);
-            this.AdditionalTitle2FilterCheckBox.Name = "AdditionalTitle2FilterCheckBox";
-            this.AdditionalTitle2FilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.AdditionalTitle2FilterCheckBox.TabIndex = 13;
-            this.AdditionalTitle2FilterCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // AdditionalTitle1FilterCheckBox
-            // 
-            this.AdditionalTitle1FilterCheckBox.AutoSize = true;
-            this.AdditionalTitle1FilterCheckBox.Location = new System.Drawing.Point(230, 125);
-            this.AdditionalTitle1FilterCheckBox.Name = "AdditionalTitle1FilterCheckBox";
-            this.AdditionalTitle1FilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.AdditionalTitle1FilterCheckBox.TabIndex = 11;
-            this.AdditionalTitle1FilterCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // NonLatinLettersTitleFilterCheckBox
-            // 
-            this.NonLatinLettersTitleFilterCheckBox.AutoSize = true;
-            this.NonLatinLettersTitleFilterCheckBox.Location = new System.Drawing.Point(230, 102);
-            this.NonLatinLettersTitleFilterCheckBox.Name = "NonLatinLettersTitleFilterCheckBox";
-            this.NonLatinLettersTitleFilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.NonLatinLettersTitleFilterCheckBox.TabIndex = 9;
-            this.NonLatinLettersTitleFilterCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // AlternateOriginalTitleFilterCheckBox
-            // 
-            this.AlternateOriginalTitleFilterCheckBox.AutoSize = true;
-            this.AlternateOriginalTitleFilterCheckBox.Location = new System.Drawing.Point(230, 79);
-            this.AlternateOriginalTitleFilterCheckBox.Name = "AlternateOriginalTitleFilterCheckBox";
-            this.AlternateOriginalTitleFilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.AlternateOriginalTitleFilterCheckBox.TabIndex = 7;
-            this.AlternateOriginalTitleFilterCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // InternationalEnglishTitleFilterCheckBox
-            // 
-            this.InternationalEnglishTitleFilterCheckBox.AutoSize = true;
-            this.InternationalEnglishTitleFilterCheckBox.Location = new System.Drawing.Point(230, 56);
-            this.InternationalEnglishTitleFilterCheckBox.Name = "InternationalEnglishTitleFilterCheckBox";
-            this.InternationalEnglishTitleFilterCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.InternationalEnglishTitleFilterCheckBox.TabIndex = 5;
-            this.InternationalEnglishTitleFilterCheckBox.UseVisualStyleBackColor = true;
+            this.StandardFilterCheckBox.AutoSize = true;
+            this.StandardFilterCheckBox.Location = new System.Drawing.Point(230, 56);
+            this.StandardFilterCheckBox.Name = "StandardFilterCheckBox";
+            this.StandardFilterCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.StandardFilterCheckBox.TabIndex = 5;
+            this.StandardFilterCheckBox.UseVisualStyleBackColor = true;
             // 
             // ExportToCollectionXmlLabel
             // 
@@ -488,7 +400,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.DiscardButton;
-            this.ClientSize = new System.Drawing.Size(459, 471);
+            this.ClientSize = new System.Drawing.Size(459, 466);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.DiscardButton);
             this.Controls.Add(this.SaveButton);
@@ -541,15 +453,7 @@
         private System.Windows.Forms.CheckBox NonLatinLettersTitleCheckBox;
         private System.Windows.Forms.CheckBox AlternateOriginalTitleCheckBox;
         private System.Windows.Forms.Label ExportToCollectionXmlLabel;
-        private System.Windows.Forms.Label AdditionalTitle2FilterLabel;
-        private System.Windows.Forms.Label AdditionalTitle1FilterLabel;
-        private System.Windows.Forms.Label NonLatinLettersTitleFilterLabel;
-        private System.Windows.Forms.Label AlternateOriginalTitleFilterLabel;
-        private System.Windows.Forms.Label InternationalEnglishTitleFilterLabel;
-        private System.Windows.Forms.CheckBox AdditionalTitle2FilterCheckBox;
-        private System.Windows.Forms.CheckBox AdditionalTitle1FilterCheckBox;
-        private System.Windows.Forms.CheckBox NonLatinLettersTitleFilterCheckBox;
-        private System.Windows.Forms.CheckBox AlternateOriginalTitleFilterCheckBox;
-        private System.Windows.Forms.CheckBox InternationalEnglishTitleFilterCheckBox;
+        private System.Windows.Forms.Label StandardFilterLabel;
+        private System.Windows.Forms.CheckBox StandardFilterCheckBox;
     }
 }

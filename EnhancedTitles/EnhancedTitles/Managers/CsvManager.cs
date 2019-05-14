@@ -88,6 +88,8 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                                     WriteText(sw, Texts.Id, listSeparator);
                                     WriteText(sw, Texts.Title, listSeparator);
                                     WriteText(sw, Texts.Edition, listSeparator);
+                                    WriteText(sw, Texts.OriginalTitle, listSeparator);
+                                    WriteText(sw, Texts.Year, listSeparator);
                                     WriteText(sw, Texts.SortTitle, listSeparator);
 
                                     if (dv.InternationalEnglishTitle)
@@ -125,14 +127,15 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
                                         String id = ids[i].ToString();
 
-                                        IDVDInfo profile;
-                                        Plugin.Api.DVDByProfileID(out profile, id, PluginConstants.DATASEC_AllSections, 0);
+                                        Plugin.Api.DVDByProfileID(out IDVDInfo profile, id, PluginConstants.DATASEC_AllSections, 0);
 
                                         TitleManager titleManager = new TitleManager(profile);
 
                                         WriteText(sw, profile.GetFormattedProfileID(), listSeparator);
                                         WriteText(sw, profile.GetTitle(), listSeparator);
                                         WriteText(sw, profile.GetEdition(), listSeparator);
+                                        WriteText(sw, profile.GetOriginalTitle(), listSeparator);
+                                        WriteText(sw, profile.GetProductionYear().ToString(), listSeparator);
                                         WriteText(sw, profile.GetSortTitle(), listSeparator);
 
                                         if (dv.InternationalEnglishTitle)
