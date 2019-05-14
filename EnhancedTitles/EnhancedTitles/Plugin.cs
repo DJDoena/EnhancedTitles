@@ -638,7 +638,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters);
                 RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters);
 
-                RegisterCustomFilterField(Constants.SearchField, Texts.ET, rebuildFilters, true);
+                RegisterCustomFilterField("TitleSearchField", Texts.ET, rebuildFilters, true);
             }
             catch (Exception ex)
             {
@@ -945,7 +945,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
                     try
                     {
-                        dv = Serializer<DefaultValues>.Deserialize(ofd.FileName);
+                        dv = DVDProfilerSerializer<DefaultValues>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -979,7 +979,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     DefaultValues dv = Settings.DefaultValues;
                     try
                     {
-                        Serializer<DefaultValues>.Serialize(sfd.FileName, dv);
+                        DVDProfilerSerializer<DefaultValues>.Serialize(sfd.FileName, dv);
 
                         MessageBox.Show(MessageBoxTexts.Done, MessageBoxTexts.InformationHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -1047,7 +1047,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
             ExceptionXml exceptionXml = new ExceptionXml(ex);
 
-            Serializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+            DVDProfilerSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
         }
 
         private Exception WrapCOMException(Exception ex)
