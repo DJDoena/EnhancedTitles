@@ -2,7 +2,7 @@
 AppName=Enhanced Titles
 AppId=EnhancedTitles
 AppVerName=Enhanced Titles 1.1.5.3
-AppCopyright=Copyright © Doena Soft. 2015 - 2019
+AppCopyright=Copyright © Doena Soft. 2015 - 2020
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf32}\Doena Soft.\Enhanced Titles
@@ -20,7 +20,7 @@ WizardSmallImageFile=compiler:wizmodernsmallimage-is.bmp
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2015 - 2019
+VersionInfoCopyright=2015 - 2020
 VersionInfoDescription=Enhanced Titles Setup
 VersionInfoVersion=1.1.5.3
 UninstallDisplayIcon={app}\djdsoft.ico
