@@ -1,8 +1,8 @@
 [Setup]
 AppName=Enhanced Titles
 AppId=EnhancedTitles
-AppVerName=Enhanced Titles 1.1.5.4
-AppCopyright=Copyright © Doena Soft. 2015 - 2020
+AppVerName=Enhanced Titles 1.1.5.5
+AppCopyright=Copyright © Doena Soft. 2015 - 2021
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf32}\Doena Soft.\Enhanced Titles
@@ -20,9 +20,9 @@ WizardSmallImageFile=compiler:wizmodernsmallimage-is.bmp
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2015 - 2020
+VersionInfoCopyright=2015 - 2021
 VersionInfoDescription=Enhanced Titles Setup
-VersionInfoVersion=1.1.5.4
+VersionInfoVersion=1.1.5.5
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
@@ -57,12 +57,12 @@ Source: "de\DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignore
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Run]
-Filename: "{win}\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe"; Parameters: "/codebase ""{app}\EnhancedTitles.dll"""; Flags: runhidden
+Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/codebase ""{app}\EnhancedTitles.dll"""; Flags: runhidden
 
 ;[UninstallDelete]
 
 [UninstallRun]
-Filename: "{win}\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe"; Parameters: "/u ""{app}\EnhancedTitles.dll"""; Flags: runhidden
+Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/u ""{app}\EnhancedTitles.dll"""; Flags: runhidden
 
 [Registry]
 ; Register - Cleanup ahead of time in case the user didn't uninstall the previous version.
