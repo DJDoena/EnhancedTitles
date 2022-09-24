@@ -10,7 +10,7 @@
     <ApplicationIcon>DJDSOFT.ICO</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>EnhancedTitles</AssemblyName>
+    <AssemblyName>DoenaSoft.EnhancedTitles</AssemblyName>
     <AssemblyOriginatorKeyFile>EnhancedTitles.snk</AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
@@ -29,6 +29,8 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -60,7 +62,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\PluginInterface\PluginInterface.5.cs">
+    <Compile Include="..\..\PluginInterface\DVDProfiler.Interface\PluginInterface.5.cs">
       <Link>PluginInterface.5.cs</Link>
     </Compile>
     <Compile Include="InternalConstants.cs" />
@@ -149,27 +151,20 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
-      <Project>{461dacca-8ebf-4c03-ad1a-c438e4eb3b36}</Project>
-      <Name>DVDProfilerHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\EnhancedTitlesLibrary\EnhancedTitlesLibrary\EnhancedTitlesLibrary.csproj">
-      <Project>{b77fcd17-ef8c-4849-9ffe-7ea0a9fe11c5}</Project>
-      <Name>EnhancedTitlesLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.WindowsAPICodePack\Core\Core.csproj">
-      <Project>{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.WindowsAPICodePack\Shell\Shell.csproj">
-      <Project>{aa0c00cb-8699-4f37-bfae-40ca87acc06d}</Project>
-      <Name>Shell</Name>
-    </ProjectReference>
+    <PackageReference Include="DoenaSoft.DVDProfilerHelper">
+      <Version>2.2.9</Version>
+    </PackageReference>
+    <PackageReference Include="DoenaSoft.EnhancedTitles.Interface">
+      <Version>1.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="DoenaSoft.WindowsAPICodePack">
+      <Version>1.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>"%25ProgramFiles%25\Inno Setup 6\iscc.exe"  ..\..\..\..\EnhancedTitlesSetup\Setup.iss</PostBuildEvent>
+    <PostBuildEvent>"%25ProgramFiles(x86)%25\Inno Setup 6\iscc.exe"  ..\..\..\..\EnhancedTitlesSetup\Setup.iss</PostBuildEvent>
   </PropertyGroup>
 </Project>

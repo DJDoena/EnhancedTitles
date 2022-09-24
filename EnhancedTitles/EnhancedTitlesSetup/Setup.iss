@@ -2,7 +2,7 @@
 AppName=Enhanced Titles
 AppId=EnhancedTitles
 AppVerName=Enhanced Titles 1.1.5.5
-AppCopyright=Copyright © Doena Soft. 2015 - 2021
+AppCopyright=Copyright © Doena Soft. 2015 - 2022
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf32}\Doena Soft.\Enhanced Titles
@@ -13,14 +13,13 @@ Compression=zip/9
 AppMutex=InvelosDVDPro
 OutputBaseFilename=EnhancedTitlesSetup
 OutputDir=..\..\..\..\EnhancedTitlesSetup\Setup\EnhancedTitles
-MinVersion=0,6.0
+MinVersion=0,6.1sp1
 PrivilegesRequired=admin
-WizardImageFile=compiler:wizmodernimage-is.bmp
-WizardSmallImageFile=compiler:wizmodernsmallimage-is.bmp
+WizardStyle=modern
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2015 - 2021
+VersionInfoCopyright=2015 - 2022
 VersionInfoDescription=Enhanced Titles Setup
 VersionInfoVersion=1.1.5.5
 UninstallDisplayIcon={app}\djdsoft.ico
@@ -37,32 +36,28 @@ Name: "full"; Description: "Full installation"
 [Files]
 Source: "djdsoft.ico"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "EnhancedTitles.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "EnhancedTitles.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.EnhancedTitles.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.EnhancedTitles.pdb"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "EnhancedTitles.xsd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DVDProfilerHelper.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.EnhancedTitles.Interface.dll"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "EnhancedTitlesLibrary.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "EnhancedTitlesLibrary.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.WindowsAPICodePack.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "Microsoft.WindowsAPICodePack.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Microsoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
-
-Source: "de\EnhancedTitles.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
-Source: "de\DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
+Source: "de\DoenaSoft.EnhancedTitles.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
+Source: "de\DoenaSoft.DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Run]
-Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/codebase ""{app}\EnhancedTitles.dll"""; Flags: runhidden
+Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/codebase ""{app}\DoenaSoft.EnhancedTitles.dll"""; Flags: runhidden
 
 ;[UninstallDelete]
 
 [UninstallRun]
-Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/u ""{app}\EnhancedTitles.dll"""; Flags: runhidden
+Filename: "{win}\Microsoft.NET\Framework\v4.0.30319\RegAsm.exe"; Parameters: "/u ""{app}\DoenaSoft.EnhancedTitles.dll"""; Flags: runhidden
 
 [Registry]
 ; Register - Cleanup ahead of time in case the user didn't uninstall the previous version.
