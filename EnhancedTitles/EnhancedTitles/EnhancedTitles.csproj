@@ -19,18 +19,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>DoenaSoft.DVDProfiler.EnhancedTitles</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -42,7 +31,6 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -79,6 +67,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\CsvManager.cs" />
+    <Compile Include="Plugin.Generated.cs" />
     <Compile Include="Resources\MessageBoxTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,20 +140,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DoenaSoft.DVDProfilerHelper">
-      <Version>2.2.9</Version>
+    <PackageReference Include="DoenaSoft.DVDProfiler.Helper">
+      <Version>3.0.8</Version>
     </PackageReference>
     <PackageReference Include="DoenaSoft.EnhancedTitles.Interface">
-      <Version>1.1.1</Version>
+      <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="DoenaSoft.WindowsAPICodePack">
-      <Version>1.1.1</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
     <PostBuildEvent>"%25ProgramFiles(x86)%25\Inno Setup 6\iscc.exe"  ..\..\..\..\EnhancedTitlesSetup\Setup.iss</PostBuildEvent>
   </PropertyGroup>
 </Project>

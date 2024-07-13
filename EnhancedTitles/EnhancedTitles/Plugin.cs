@@ -11,12 +11,12 @@ using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.EnhancedTitles.Resources;
 using DoenaSoft.DVDProfiler.GetCustomDVDFieldDefinitions;
+using DoenaSoft.ToolBox.Generics;
 using Invelos.DVDProfilerPlugin;
 
 namespace DoenaSoft.DVDProfiler.EnhancedTitles
 {
-    [Guid(ClassGuid.ClassID), ComVisible(true)]
-    public class Plugin : IDVDProfilerPlugin, IDVDProfilerPluginInfo, IDVDProfilerDataAwarePlugin
+    public partial class Plugin : IDVDProfilerPlugin, IDVDProfilerDataAwarePlugin
     {
         private readonly String SettingsFile;
 
@@ -104,7 +104,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
         {
             //System.Diagnostics.Debugger.Launch();
 
-            Api = api;
+            this.Api = api;
 
             if (Directory.Exists(ApplicationPath) == false)
             {
@@ -114,7 +114,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             {
                 try
                 {
-                    Settings = Settings.Deserialize(SettingsFile);
+                    this.Settings = Settings.Deserialize(SettingsFile);
                 }
                 catch (Exception ex)
                 {
@@ -123,28 +123,28 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 }
             }
 
-            EnsureSettingsAndSetUILanguage();
+            this.EnsureSettingsAndSetUILanguage();
 
-            SetIsRemoteAccess();
+            this.SetIsRemoteAccess();
 
-            Api.RegisterForEvent(PluginConstants.EVENTID_FormCreated);
-            Api.RegisterForEvent(PluginConstants.EVENTID_FormDestroyed);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_FormCreated);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_FormDestroyed);
 
-            Api.RegisterForEvent(PluginConstants.EVENTID_DatabaseOpened);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_DatabaseOpened);
 
-            Api.RegisterForEvent(PluginConstants.EVENTID_DVDPersonalizeShown);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_DVDPersonalizeShown);
 
-            Api.RegisterForEvent(PluginConstants.EVENTID_RestoreStarting);
-            Api.RegisterForEvent(PluginConstants.EVENTID_RestoreFinished);
-            Api.RegisterForEvent(PluginConstants.EVENTID_RestoreCancelled);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_RestoreStarting);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_RestoreFinished);
+            this.Api.RegisterForEvent(PluginConstants.EVENTID_RestoreCancelled);
 
-            DvdMenuToken = Api.RegisterMenuItemA(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
+            DvdMenuToken = this.Api.RegisterMenuItemA(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                 , "DVD", Texts.ET, DvdMenuId, "", PluginConstants.SHORTCUT_KEY_A + 19, PluginConstants.SHORTCUT_MOD_Ctrl + PluginConstants.SHORTCUT_MOD_Shift, false);
 
             CollectionExportMenuToken = api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                 , @"Collection\" + Texts.ET, Texts.ExportToXml, CollectionExportMenuId);
 
-            if (IsRemoteAccess == false)
+            if (this.IsRemoteAccess == false)
             {
                 CollectionImportMenuToken = api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                     , @"Collection\" + Texts.ET, Texts.ImportFromXml, CollectionImportMenuId);
@@ -156,7 +156,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             CollectionFlaggedExportMenuToken = api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                 , @"Collection\Flagged\" + Texts.ET, Texts.ExportToXml, CollectionFlaggedExportMenuId);
 
-            if (IsRemoteAccess == false)
+            if (this.IsRemoteAccess == false)
             {
                 CollectionFlaggedImportMenuToken = api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
                    , @"Collection\Flagged\" + Texts.ET, Texts.ImportFromXml, CollectionFlaggedImportMenuId);
@@ -175,29 +175,29 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             //PluginInfoToolsMenuToken = Api.RegisterMenuItem(PluginConstants.FORMID_Main, PluginConstants.MENUID_Form
             //    , "Tools", "Show Plugin FieldAccess", PluginInfoToolsMenuId);
 
-            RegisterCustomFields();
+            this.RegisterCustomFields();
         }
 
         public void Unload()
         {
-            Api.UnregisterMenuItem(DvdMenuToken);
+            this.Api.UnregisterMenuItem(DvdMenuToken);
 
-            Api.UnregisterMenuItem(CollectionExportMenuToken);
-            Api.UnregisterMenuItem(CollectionImportMenuToken);
-            Api.UnregisterMenuItem(CollectionExportToCsvMenuToken);
+            this.Api.UnregisterMenuItem(CollectionExportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionImportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionExportToCsvMenuToken);
 
-            Api.UnregisterMenuItem(CollectionFlaggedExportMenuToken);
-            Api.UnregisterMenuItem(CollectionFlaggedImportMenuToken);
-            Api.UnregisterMenuItem(CollectionFlaggedExportToCsvMenuToken);
+            this.Api.UnregisterMenuItem(CollectionFlaggedExportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionFlaggedImportMenuToken);
+            this.Api.UnregisterMenuItem(CollectionFlaggedExportToCsvMenuToken);
 
             //Api.UnregisterMenuItem(PluginInfoToolsMenuToken);
-            Api.UnregisterMenuItem(ToolsOptionsMenuToken);
-            Api.UnregisterMenuItem(ToolsExportOptionsMenuToken);
-            Api.UnregisterMenuItem(ToolsImportOptionsMenuToken);
+            this.Api.UnregisterMenuItem(ToolsOptionsMenuToken);
+            this.Api.UnregisterMenuItem(ToolsExportOptionsMenuToken);
+            this.Api.UnregisterMenuItem(ToolsImportOptionsMenuToken);
 
             try
             {
-                Settings.Serialize(SettingsFile);
+                this.Settings.Serialize(SettingsFile);
             }
             catch (Exception ex)
             {
@@ -205,7 +205,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            Api = null;
+            this.Api = null;
         }
 
         public void HandleEvent(Int32 EventType, Object EventData)
@@ -216,14 +216,14 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 {
                     case (PluginConstants.EVENTID_CustomMenuClick):
                         {
-                            HandleMenuClick((Int32)EventData);
+                            this.HandleMenuClick((Int32)EventData);
                             break;
                         }
                     case (PluginConstants.EVENTID_FormCreated):
                         {
                             if ((Int32)EventData == PluginConstants.FORMID_Personalize)
                             {
-                                PersonalizeScreenToken = Api.RegisterMenuItemA(PluginConstants.FORMID_Personalize, PluginConstants.MENUID_Form
+                                PersonalizeScreenToken = this.Api.RegisterMenuItemA(PluginConstants.FORMID_Personalize, PluginConstants.MENUID_Form
                                     , Texts.ET, Texts.ET, PersonalizeScreenId, "", PluginConstants.SHORTCUT_KEY_A + 19, PluginConstants.SHORTCUT_MOD_Ctrl + PluginConstants.SHORTCUT_MOD_Shift, false);
                             }
                             break;
@@ -234,7 +234,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                             {
                                 if (String.IsNullOrEmpty(PersonalizeScreenToken) == false)
                                 {
-                                    Api.UnregisterMenuItem(PersonalizeScreenToken);
+                                    this.Api.UnregisterMenuItem(PersonalizeScreenToken);
                                 }
                                 CurrentProfileId = null;
                             }
@@ -243,7 +243,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     case (PluginConstants.EVENTID_RestoreStarting):
                         {
                             DatabaseRestoreRunning = true;
-                            RegisterCustomFields(false);
+                            this.RegisterCustomFields(false);
                             break;
                         }
                     case (PluginConstants.EVENTID_DatabaseOpened):
@@ -251,7 +251,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     case (PluginConstants.EVENTID_RestoreCancelled):
                         {
                             DatabaseRestoreRunning = false;
-                            RegisterCustomFields();
+                            this.RegisterCustomFields();
                             break;
                         }
                     case (PluginConstants.EVENTID_DVDPersonalizeShown):
@@ -273,7 +273,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                         File.Delete(ErrorFile);
                     }
 
-                    LogException(ex);
+                    this.LogException(ex);
                 }
                 catch (Exception inEx)
                 {
@@ -285,58 +285,13 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
         #endregion
 
-        #region IDVDProfilerPluginInfo Members
-
-        public String GetName()
-        {
-            return (Texts.PluginName);
-        }
-
-        public String GetDescription()
-        {
-            return (Texts.PluginDescription);
-        }
-
-        public String GetAuthorName()
-        {
-            return ("Doena Soft.");
-        }
-
-        public String GetAuthorWebsite()
-        {
-            return (Texts.PluginUrl);
-        }
-
-        public Int32 GetPluginAPIVersion()
-        {
-            return (PluginConstants.API_VERSION);
-        }
-
-        public Int32 GetVersionMajor()
-        {
-            Version version;
-
-            version = System.Reflection.Assembly.GetAssembly(GetType()).GetName().Version;
-            return (version.Major);
-        }
-
-        public Int32 GetVersionMinor()
-        {
-            Version version;
-
-            version = System.Reflection.Assembly.GetAssembly(GetType()).GetName().Version;
-            return (version.Minor * 100 + version.Build * 10 + version.Revision);
-        }
-
-        #endregion
-
         #region IDVDProfilerDataAwarePlugin
 
         public Boolean ExportsCustomDataXML()
         {
             Boolean exportsXml;
 
-            exportsXml = ((Settings.DefaultValues.ExportToCollectionXml)
+            exportsXml = ((this.Settings.DefaultValues.ExportToCollectionXml)
                 && (DatabaseRestoreRunning == false));
             return (exportsXml);
         }
@@ -356,7 +311,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             Boolean hasAdditionalTitle2;
             TitleManager tm;
 
-            if (Settings.DefaultValues.ExportToCollectionXml == false)
+            if (this.Settings.DefaultValues.ExportToCollectionXml == false)
             {
                 return (String.Empty);
             }
@@ -378,7 +333,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 StringBuilder sb;
                 DefaultValues dv;
 
-                dv = Settings.DefaultValues;
+                dv = this.Settings.DefaultValues;
                 sb = new StringBuilder("<EnhancedTitles>");
                 if (hasInternationalEnglishTitle)
                 {
@@ -446,7 +401,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
             titleManager = new TitleManager(SourceDVD);
             Handled = true;
-            dv = Settings.DefaultValues;
+            dv = this.Settings.DefaultValues;
             switch (TagName)
             {
                 #region Titles
@@ -567,9 +522,9 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     return contains;
                 }
 
-                if (Settings.DefaultValues.StandardFilter)
+                if (this.Settings.DefaultValues.StandardFilter)
                 {
-                    Api.DVDByProfileID(out var profile, TestDVD.GetProfileID(), 0, 0);
+                    this.Api.DVDByProfileID(out var profile, TestDVD.GetProfileID(), 0, 0);
 
                     contains = ContainsFilter(ComparisonTypeIndex, comparisonText, profile.GetTitle());
 
@@ -606,7 +561,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             {
                 DefaultValues dv;
 
-                UnregisterCustomFilterField(rebuildFilters);
+                this.UnregisterCustomFilterField(rebuildFilters);
 
                 #region Schema
 
@@ -618,13 +573,13 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                         String xsd;
 
                         xsd = sr.ReadToEnd();
-                        Api.SetGlobalSetting(Constants.FieldDomain, "EnhancedTitlesSchema", xsd, Constants.ReadKey, InternalConstants.WriteKey);
+                        this.Api.SetGlobalSetting(Constants.FieldDomain, "EnhancedTitlesSchema", xsd, Constants.ReadKey, InternalConstants.WriteKey);
                     }
                 }
 
                 #endregion
 
-                dv = Settings.DefaultValues;
+                dv = this.Settings.DefaultValues;
 
                 //RegisterCustomField(Constants.InternationalEnglishTitle, dv.InternationalEnglishTitleLabel, rebuildFilters, dv.InternationalEnglishTitleFilter);
                 //RegisterCustomField(Constants.AlternateOriginalTitle, dv.AlternateOriginalTitleLabel, rebuildFilters, dv.AlternateOriginalTitleFilter);
@@ -632,13 +587,13 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 //RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters, dv.AdditionalTitle1Filter);
                 //RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters, dv.AdditionalTitle2Filter);
 
-                RegisterCustomField(Constants.InternationalEnglishTitle, dv.InternationalEnglishTitleLabel, rebuildFilters);
-                RegisterCustomField(Constants.AlternateOriginalTitle, dv.AlternateOriginalTitleLabel, rebuildFilters);
-                RegisterCustomField(Constants.NonLatinLettersTitle, dv.NonLatinLettersTitleLabel, rebuildFilters);
-                RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters);
-                RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters);
+                this.RegisterCustomField(Constants.InternationalEnglishTitle, dv.InternationalEnglishTitleLabel, rebuildFilters);
+                this.RegisterCustomField(Constants.AlternateOriginalTitle, dv.AlternateOriginalTitleLabel, rebuildFilters);
+                this.RegisterCustomField(Constants.NonLatinLettersTitle, dv.NonLatinLettersTitleLabel, rebuildFilters);
+                this.RegisterCustomField(Constants.AdditionalTitle1, dv.AdditionalTitle1Label, rebuildFilters);
+                this.RegisterCustomField(Constants.AdditionalTitle2, dv.AdditionalTitle2Label, rebuildFilters);
 
-                RegisterCustomFilterField("TitleSearchField", Texts.ET, rebuildFilters, true);
+                this.RegisterCustomFilterField("TitleSearchField", Texts.ET, rebuildFilters, true);
             }
             catch (Exception ex)
             {
@@ -651,7 +606,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                         File.Delete(ErrorFile);
                     }
 
-                    LogException(ex);
+                    this.LogException(ex);
                 }
                 catch (Exception inEx)
                 {
@@ -671,7 +626,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 {
                     try
                     {
-                        Api.RemoveCustomFilterField(token);
+                        this.Api.RemoveCustomFilterField(token);
                     }
                     catch (COMException)
                     { }
@@ -685,8 +640,8 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             , Boolean rebuildFilters)
         //, Boolean filterIsEnabled)
         {
-            Api.CreateCustomDVDField(Constants.FieldDomain, fieldName, PluginConstants.FIELD_TYPE_STRING, Constants.ReadKey, InternalConstants.WriteKey);
-            Api.SetCustomDVDFieldStorage(Constants.FieldDomain, fieldName, InternalConstants.WriteKey, true, false);
+            this.Api.CreateCustomDVDField(Constants.FieldDomain, fieldName, PluginConstants.FIELD_TYPE_STRING, Constants.ReadKey, InternalConstants.WriteKey);
+            this.Api.SetCustomDVDFieldStorage(Constants.FieldDomain, fieldName, InternalConstants.WriteKey, true, false);
         }
 
         private void RegisterCustomFilterField(String fieldName
@@ -707,7 +662,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
                 //System.Diagnostics.Debugger.Launch();
 
-                token = Api.SetCustomFieldFilterableA(displayName, PluginConstants.FILTER_INPUT_TEXT
+                token = this.Api.SetCustomFieldFilterableA(displayName, PluginConstants.FILTER_INPUT_TEXT
                     , new String[] { Texts.FilterStartsWith, Texts.FilterContains }, null);
 
                 if (token != null)
@@ -729,11 +684,11 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             Boolean isRemote;
             String localPath;
 
-            Api.GetCurrentDatabaseInformation(out name, out isRemote, out localPath);
+            this.Api.GetCurrentDatabaseInformation(out name, out isRemote, out localPath);
 
             //System.Diagnostics.Debugger.Launch();
 
-            IsRemoteAccess = isRemote;
+            this.IsRemoteAccess = isRemote;
         }
 
         private static void AddTag(StringBuilder sb
@@ -773,7 +728,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
         {
             Texts.Culture = DefaultValues.GetUILanguage();
 
-            CultureInfo uiLanguage = EnsureSettings();
+            CultureInfo uiLanguage = this.EnsureSettings();
 
             Texts.Culture = uiLanguage;
 
@@ -782,17 +737,17 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
         private CultureInfo EnsureSettings()
         {
-            if (Settings == null)
+            if (this.Settings == null)
             {
-                Settings = new Settings();
+                this.Settings = new Settings();
             }
 
-            if (Settings.DefaultValues == null)
+            if (this.Settings.DefaultValues == null)
             {
-                Settings.DefaultValues = new DefaultValues();
+                this.Settings.DefaultValues = new DefaultValues();
             }
 
-            return (Settings.DefaultValues.UiLanguage);
+            return (this.Settings.DefaultValues.UiLanguage);
         }
 
         private static String HtmlEncode(String decoded)
@@ -804,7 +759,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     Int32 number;
                     String newChar;
 
-                    number = (Int32)c;
+                    number = c;
                     if (number > 127)
                     {
                         newChar = "&#" + number.ToString() + ";";
@@ -826,13 +781,13 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 {
                     case (DvdMenuId):
                         {
-                            OpenEditor(true);
+                            this.OpenEditor(true);
 
                             break;
                         }
                     case (PersonalizeScreenId):
                         {
-                            OpenEditor(false);
+                            this.OpenEditor(false);
 
                             break;
                         }
@@ -891,19 +846,19 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                         }
                     case (ToolsOptionsMenuId):
                         {
-                            OpenSettings();
+                            this.OpenSettings();
 
                             break;
                         }
                     case (ToolsExportOptionsMenuId):
                         {
-                            ExportOptions();
+                            this.ExportOptions();
 
                             break;
                         }
                     case (ToolsImportOptionsMenuId):
                         {
-                            ImportOptions();
+                            this.ImportOptions();
 
                             break;
                         }
@@ -920,7 +875,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                         File.Delete(ErrorFile);
                     }
 
-                    LogException(ex);
+                    this.LogException(ex);
                 }
                 catch (Exception inEx)
                 {
@@ -945,7 +900,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
                     try
                     {
-                        dv = DVDProfilerSerializer<DefaultValues>.Deserialize(ofd.FileName);
+                        dv = Serializer<DefaultValues>.Deserialize(ofd.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -954,7 +909,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                     }
                     if (dv != null)
                     {
-                        Settings.DefaultValues = dv;
+                        this.Settings.DefaultValues = dv;
                         Texts.Culture = dv.UiLanguage;
                         MessageBoxTexts.Culture = dv.UiLanguage;
                         MessageBox.Show(MessageBoxTexts.Done, MessageBoxTexts.InformationHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -976,10 +931,10 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
                 sfd.FileName = "EnhancedTitlesOptions.xml";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    DefaultValues dv = Settings.DefaultValues;
+                    DefaultValues dv = this.Settings.DefaultValues;
                     try
                     {
-                        DVDProfilerSerializer<DefaultValues>.Serialize(sfd.FileName, dv);
+                        Serializer<DefaultValues>.Serialize(sfd.FileName, dv);
 
                         MessageBox.Show(MessageBoxTexts.Done, MessageBoxTexts.InformationHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -998,7 +953,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    RegisterCustomFields();
+                    this.RegisterCustomFields();
                 }
             }
         }
@@ -1008,7 +963,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
             String xml;
             CustomPluginDataDefinitions customPluginDataDefinitions;
 
-            xml = Api.GetCustomDVDFieldDefinitions();
+            xml = this.Api.GetCustomDVDFieldDefinitions();
             customPluginDataDefinitions = CustomPluginDataDefinitions.Deserialize(xml);
             using (PluginFieldAccessForm form = new PluginFieldAccessForm(customPluginDataDefinitions))
             {
@@ -1023,15 +978,15 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
             if (String.IsNullOrEmpty(profileId))
             {
-                profile = Api.GetDisplayedDVD();
+                profile = this.Api.GetDisplayedDVD();
                 profileId = profile.GetProfileID();
             }
             if (String.IsNullOrEmpty(profileId) == false)
             {
-                Api.DVDByProfileID(out profile, profileId, PluginConstants.DATASEC_AllSections, -1);
+                this.Api.DVDByProfileID(out profile, profileId, PluginConstants.DATASEC_AllSections, -1);
                 if (profile.GetProfileID() == null)
                 {
-                    profile = Api.CreateDVD();
+                    profile = this.Api.CreateDVD();
                     profile.SetProfileID(profileId);
                 }
                 using (MainForm form = new MainForm(this, profile, fullEdit))
@@ -1043,11 +998,11 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
         private void LogException(Exception ex)
         {
-            ex = WrapCOMException(ex);
+            ex = this.WrapCOMException(ex);
 
             ExceptionXml exceptionXml = new ExceptionXml(ex);
 
-            DVDProfilerSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+            Serializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
         }
 
         private Exception WrapCOMException(Exception ex)
@@ -1056,7 +1011,7 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
             if (ex is COMException comEx)
             {
-                String lastApiError = Api.GetLastError();
+                String lastApiError = this.Api.GetLastError();
 
                 EnhancedCOMException newEx = new EnhancedCOMException(lastApiError, comEx);
 
@@ -1091,37 +1046,5 @@ namespace DoenaSoft.DVDProfiler.EnhancedTitles
 
             return contains;
         }
-
-        #region Plugin Registering
-
-        [DllImport("user32.dll")]
-        public extern static int SetParent(int child, int parent);
-
-        [ComImport(), Guid("0002E005-0000-0000-C000-000000000046")]
-        internal class StdComponentCategoriesMgr { }
-
-        [ComRegisterFunction()]
-        public static void RegisterServer(Type t)
-        {
-            CategoryRegistrar.ICatRegister cr = (CategoryRegistrar.ICatRegister)new StdComponentCategoriesMgr();
-            Guid clsidThis = new Guid(ClassGuid.ClassID);
-            Guid catid = new Guid("833F4274-5632-41DB-8FC5-BF3041CEA3F1");
-
-            cr.RegisterClassImplCategories(ref clsidThis, 1,
-                new Guid[] { catid });
-        }
-
-        [ComUnregisterFunction()]
-        public static void UnregisterServer(Type t)
-        {
-            CategoryRegistrar.ICatRegister cr = (CategoryRegistrar.ICatRegister)new StdComponentCategoriesMgr();
-            Guid clsidThis = new Guid(ClassGuid.ClassID);
-            Guid catid = new Guid("833F4274-5632-41DB-8FC5-BF3041CEA3F1");
-
-            cr.UnRegisterClassImplCategories(ref clsidThis, 1,
-                new Guid[] { catid });
-        }
-
-        #endregion
     }
 }
