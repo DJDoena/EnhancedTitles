@@ -1,27 +1,27 @@
 [Setup]
 AppName=Enhanced Titles
 AppId=EnhancedTitles
-AppVerName=Enhanced Titles 1.1.5.6
-AppCopyright=Copyright © Doena Soft. 2015 - 2024
+AppVerName=Enhanced Titles 1.1.6.0
+AppCopyright=Copyright © Doena Soft. 2015 - 2025
 AppPublisher=Doena Soft.
 AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf32}\Doena Soft.\Enhanced Titles
 ; DefaultGroupName=Doena Soft.
 DirExistsWarning=No
-SourceDir=..\EnhancedTitles\bin\x86\EnhancedTitles
+SourceDir=..\EnhancedTitles\bin\x86\Release\net481
 Compression=zip/9
 AppMutex=InvelosDVDPro
 OutputBaseFilename=EnhancedTitlesSetup
-OutputDir=..\..\..\..\EnhancedTitlesSetup\Setup\EnhancedTitles
+OutputDir=..\Setup\EnhancedTitles
 MinVersion=0,6.1sp1
 PrivilegesRequired=admin
 WizardStyle=modern
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2015 - 2024
+VersionInfoCopyright=2015 - 2025
 VersionInfoDescription=Enhanced Titles Setup
-VersionInfoVersion=1.1.5.6
+VersionInfoVersion=1.1.6.0
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
@@ -45,6 +45,12 @@ Source: "DoenaSoft.EnhancedTitles.Interface.dll"; DestDir: "{app}"; Flags: ignor
 
 Source: "DoenaSoft.WindowsAPICodePack.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DoenaSoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "System.Buffers.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Memory.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Numerics.Vectors.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Resources.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "de\DoenaSoft.EnhancedTitles.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
 Source: "de\DoenaSoft.DVDProfiler.Helper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
