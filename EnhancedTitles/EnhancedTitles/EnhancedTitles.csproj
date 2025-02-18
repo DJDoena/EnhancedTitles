@@ -14,12 +14,12 @@
 		<AssemblyOriginatorKeyFile>EnhancedTitles.snk</AssemblyOriginatorKeyFile>
 		<EnableComHosting>true</EnableComHosting>
 		<Title>Enhanced Titles</Title>
+		<Description>Allows to add more detailed information about the titles.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>Copyright © Doena Soft. 2017 - 2025</Copyright>
 		<Version>1.1.6</Version>
 		<FileVersion>1.1.6</FileVersion>
-		<Description>Allows to add more detailed information about the titles.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
